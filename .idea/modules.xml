@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FISE_2024_2025_Dungeon_Crawler.iml" filepath="$PROJECT_DIR$/FISE_2024_2025_Dungeon_Crawler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DungeonCrawler_project.iml" filepath="$PROJECT_DIR$/DungeonCrawler_project.iml" />
     </modules>
   </component>
 </project>

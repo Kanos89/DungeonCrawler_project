@@ -25,48 +25,68 @@ public class Playground {
             final int imageRockWidth = imageRock.getWidth(null);
             final int imageRockHeight = imageRock.getHeight(null);
 
+            final int imageTrapWidth = imageTrap.getWidth(null);
+            final int imageTrapHeight = imageTrap.getHeight(null);
+
             BufferedReader bufferedReader = new BufferedReader(new FileReader(pathName));
-            String line=bufferedReader.readLine();
+            String line = bufferedReader.readLine();
             int lineNumber = 0;
             int columnNumber = 0;
-            while (line!= null){
-                for (byte element : line.getBytes(StandardCharsets.UTF_8)){
-                    switch (element){
-                        case 'T' : environment.add(new SolidSprite(columnNumber*imageTreeWidth,
-                                lineNumber*imageTreeHeight,imageTree, imageTreeWidth, imageTreeHeight));
-                                    break;
-                        case ' ' : environment.add(new Sprite(columnNumber*imageGrassWidth,
-                                lineNumber*imageGrassHeight, imageGrass, imageGrassWidth, imageGrassHeight));
+            while (line != null) {
+                for (byte element : line.getBytes(StandardCharsets.UTF_8)) {
+                    switch (element) {
+                        case 'T':
+                            environment.add(new SolidSprite(columnNumber * imageTreeWidth,
+                                    lineNumber * imageTreeHeight, imageTree, imageTreeWidth, imageTreeHeight));
                             break;
-                        case 'R' : environment.add(new SolidSprite(columnNumber*imageRockWidth,
-                                lineNumber*imageRockHeight, imageRock, imageRockWidth, imageRockHeight));
+                        case ' ':
+                            environment.add(new Sprite(columnNumber * imageGrassWidth,
+                                    lineNumber * imageGrassHeight, imageGrass, imageGrassWidth, imageGrassHeight));
+                            break;
+                        case 'R':
+                            environment.add(new SolidSprite(columnNumber * imageRockWidth,
+                                    lineNumber * imageRockHeight, imageRock, imageRockWidth, imageRockHeight));
+                            break;
+                        case 't': // Add traps to the environment
+                            environment.add(new GrassTrap(columnNumber * imageTrapWidth,
+                                    lineNumber * imageTrapHeight, imageTrap, imageTrapWidth, imageTrapHeight));
                             break;
                     }
                     columnNumber++;
                 }
-                columnNumber =0;
+                columnNumber = 0;
                 lineNumber++;
-                line=bufferedReader.readLine();
+                line = bufferedReader.readLine();
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public ArrayList<Sprite> getSolidSpriteList(){
-        ArrayList <Sprite> solidSpriteArrayList = new ArrayList<>();
-        for (Sprite sprite : environment){
+    public ArrayList<Sprite> getSolidSpriteList() {
+        ArrayList<Sprite> solidSpriteArrayList = new ArrayList<>();
+        for (Sprite sprite : environment) {
             if (sprite instanceof SolidSprite) solidSpriteArrayList.add(sprite);
         }
         return solidSpriteArrayList;
     }
 
-    public ArrayList<Displayable> getSpriteList(){
-        ArrayList <Displayable> displayableArrayList = new ArrayList<>();
-        for (Sprite sprite : environment){
+    public ArrayList<Displayable> getSpriteList() {
+        ArrayList<Displayable> displayableArrayList = new ArrayList<>();
+        for (Sprite sprite : environment) {
             displayableArrayList.add((Displayable) sprite);
         }
         return displayableArrayList;
+    }
+
+    // New method to return the traps in the environment
+    public ArrayList<GrassTrap> getTraps() {
+        ArrayList<GrassTrap> traps = new ArrayList<>();
+        for (Sprite sprite : environment) {
+            if (sprite instanceof GrassTrap) {
+                traps.add((GrassTrap) sprite);
+            }
+        }
+        return traps;
     }
 }
