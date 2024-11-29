@@ -45,6 +45,9 @@ public class GameEngine implements Engine, KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {
         // This method doesn't need to do anything for now
+        if(e.getKeyChar() == 's'){ //sprint
+            hero.setSpeed(10);
+        }
     }
 
     @Override
