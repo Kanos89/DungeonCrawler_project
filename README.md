@@ -5,4 +5,4 @@ Bonus features :
 - Life bar, with hearts
 - Traps that deals damages to the hero
 - A game over screen when the life comes to 0
-- a partial working running function (on "r" key)
+- a partial working running function (on "s" key)
