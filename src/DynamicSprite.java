@@ -18,6 +18,10 @@ public class DynamicSprite extends SolidSprite {
         this.hp = maxHp;
     }
 
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+    
     @Override
     public Rectangle2D getHitBox() {
         // Adjust the hitbox to be the bottom 30% of the sprite's height
